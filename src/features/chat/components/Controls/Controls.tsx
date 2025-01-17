@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../../../app/hooks";
 import { addMessage } from "../../chat-slice";
-import { getMessage } from "../../../../methods/get-message";
+import { Button } from "../../../../components/Button";
+import { NewMessage } from "../NewMessage";
+import { MessageType } from "../../types";
 
 export const Controls = () => {
   const dispatch = useAppDispatch();
@@ -11,7 +13,7 @@ export const Controls = () => {
     const socket = new WebSocket("ws://localhost:3000");
 
     socket.onopen = () => {
-      socket.send(getMessage("Client sends its greetings!"));
+      socket.send("Client sends its greetings!");
     };
 
     socket.onmessage = (event) => {
@@ -19,18 +21,18 @@ export const Controls = () => {
     };
 
     socket.onclose = () => {
-      socket.send(getMessage("Client says farewell!"));
+      socket.send("Client says farewell!");
     };
 
     setSocket(socket);
   };
 
-  const sendMessage = () => {
+  const sendMessage = (message: MessageType) => {
     if (!socket) {
       return;
     }
 
-    socket.send(getMessage("New message"));
+    socket.send(message);
   };
 
   const closeConnection = () => {
@@ -39,13 +41,24 @@ export const Controls = () => {
     }
 
     socket.close();
+    setSocket(null);
   };
 
   return (
     <>
-      <button onClick={openConnection}>Open connection</button>
-      <button onClick={sendMessage}>Send message</button>
-      <button onClick={closeConnection}>Close connection</button>
+      <div>
+        <h2>Connection:</h2>
+
+        <Button disabled={!!socket} onClick={openConnection}>
+          Open connection
+        </Button>
+
+        <Button disabled={!socket} onClick={closeConnection}>
+          Close connection
+        </Button>
+      </div>
+
+      {!!socket && <NewMessage onSubmit={sendMessage} />}
     </>
   );
 };
