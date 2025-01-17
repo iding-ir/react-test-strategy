@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 
-import { createAppSlice } from "../createAppAlice";
+import { createAppSlice } from "../createAppSlice";
 import { MessagesType, MessageType } from "./types";
 import { DEFAULT_MESSAGES } from "./chat";
 

@@ -5,19 +5,18 @@ import {
   configureStore,
 } from "@reduxjs/toolkit";
 import { chatSlice } from "../features/chat/chat-slice";
+import { rootSaga, sagaMiddleware } from "./sagas";
+import { notificationSlice } from "../features/notification/notification-slice";
 
-const rootReducer = combineSlices(chatSlice);
+const rootReducer = combineSlices(chatSlice, notificationSlice);
 
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [],
-      },
-    }),
-  //   .prepend(middleware)
+    getDefaultMiddleware().concat(sagaMiddleware),
 });
+
+sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = typeof store;

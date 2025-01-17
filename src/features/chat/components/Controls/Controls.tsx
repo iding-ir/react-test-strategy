@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../../../app/hooks";
-import { addMessage } from "../../chat-slice";
 import { Button } from "../../../../components/Button";
 import { NewMessage } from "../NewMessage";
 import { MessageType } from "../../types";
+import { requestAddMessage } from "../../actions";
 
 export const Controls = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ export const Controls = () => {
     };
 
     socket.onmessage = (event) => {
-      dispatch(addMessage(event.data));
+      dispatch(requestAddMessage(event.data));
     };
 
     socket.onclose = () => {
