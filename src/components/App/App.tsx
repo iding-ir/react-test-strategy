@@ -1,4 +1,4 @@
-import { Chat } from "../../features/chat/components/Messages";
+import { Chat } from "../../features/chat/components/Chat";
 import { Wrappers } from "../Wrappers/Wrappers";
 
 export const App = () => {

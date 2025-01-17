@@ -1,3 +1,3 @@
-import { ChatsType } from "./types";
+import { MessagesType } from "./types";
 
-export const DEFAULT_CHATS: ChatsType = [];
+export const DEFAULT_MESSAGES: MessagesType = [];

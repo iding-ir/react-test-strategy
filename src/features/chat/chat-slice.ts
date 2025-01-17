@@ -1,14 +1,15 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { ChatsType, ChatType } from "./types";
-import { DEFAULT_CHATS } from "./chat";
+
 import { createAppSlice } from "../createAppAlice";
+import { MessagesType, MessageType } from "./types";
+import { DEFAULT_MESSAGES } from "./chat";
 
 export interface ChatState {
-  messages: ChatsType;
+  messages: MessagesType;
 }
 
 const initialState: ChatState = {
-  messages: DEFAULT_CHATS,
+  messages: DEFAULT_MESSAGES,
 };
 
 export const chatSlice = createAppSlice({
@@ -16,12 +17,12 @@ export const chatSlice = createAppSlice({
   initialState,
   reducers: (create) => ({
     addMessage: create.reducer(
-      (state, { payload }: PayloadAction<ChatType>) => {
+      (state, { payload }: PayloadAction<MessageType>) => {
         state.messages = [...state.messages, payload];
       }
     ),
     clearMessages: create.reducer((state) => {
-      state.messages = DEFAULT_CHATS;
+      state.messages = DEFAULT_MESSAGES;
     }),
   }),
   selectors: {
