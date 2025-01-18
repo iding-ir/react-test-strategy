@@ -18,6 +18,13 @@ function* requestAddMessageSaga(
     yield put(
       addNotification({ message: getErrorMessage(error), category: "error" })
     );
+    yield put(
+      addNotification({
+        message: "Retrying to send message...",
+        category: "info",
+      })
+    );
+    yield put(requestAddMessage(action.payload));
   }
 }
 
