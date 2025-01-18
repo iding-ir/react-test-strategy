@@ -49,11 +49,19 @@ export const Controls = () => {
       <h2>Connection:</h2>
 
       <div>
-        <Button disabled={!!socket} onClick={openConnection}>
+        <Button
+          testId="connect-button"
+          disabled={!!socket}
+          onClick={openConnection}
+        >
           Open connection
         </Button>
 
-        <Button disabled={!socket} onClick={closeConnection}>
+        <Button
+          testId="disconnect-button"
+          disabled={!socket}
+          onClick={closeConnection}
+        >
           Close connection
         </Button>
       </div>

@@ -10,7 +10,7 @@ export const NewMessage = ({
     <div>
       <h2>New message:</h2>
 
-      <Input onSubmit={onSubmit} />
+      <Input testId="new-message" onSubmit={onSubmit} />
     </div>
   );
 };

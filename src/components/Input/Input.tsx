@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Button } from "../Button";
 
-export const Input = ({ onSubmit }: { onSubmit: (value: string) => void }) => {
+export const Input = ({
+  testId,
+  onSubmit,
+}: {
+  testId: string;
+  onSubmit: (value: string) => void;
+}) => {
   const [value, setValue] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,9 +21,18 @@ export const Input = ({ onSubmit }: { onSubmit: (value: string) => void }) => {
 
   return (
     <>
-      <input type="text" value={value} onChange={handleChange} />
+      <input
+        data-testId={`${testId}-input`}
+        type="text"
+        value={value}
+        onChange={handleChange}
+      />
 
-      <Button disabled={!value} onClick={handleClick}>
+      <Button
+        testId={`${testId}-button`}
+        disabled={!value}
+        onClick={handleClick}
+      >
         Send message
       </Button>
     </>

@@ -18,9 +18,11 @@ export const Messages = () => {
     <div data-testid="messages">
       <h2>Messages:</h2>
 
-      <ul>
+      <ul data-testId="message-list">
         {messages.map((message, index) => (
-          <li key={index}>{message}</li>
+          <li data-testId="message-item" key={index}>
+            {message}
+          </li>
         ))}
       </ul>
 
