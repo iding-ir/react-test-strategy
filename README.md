@@ -1,50 +1,67 @@
-# React + TypeScript + Vite
+# Index
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- [About](#about)
+- [Strategy](#strategy)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
 
-Currently, two official plugins are available:
+## About
+A mock project test a React Redux application using `Vitest`, `React Testing Library`, `Cypress` and `Redux Saga Test Plan`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Strategy
+- Write testable code.
+- Mock only where it makes sense.
+- Use `Vitest` instead of `Jest` for unit testing, because it works better with `Vite` and also it's faster.
+- Use `Cypress` instead of `Playwright` for e2e testing, because it's better feature packed.
+- Use `React Testing Library` alongside with `Vite` for Component and Integration testing. Cypress could also be used for component testing.
+- Use `Redux Saga Test Plan` for testing effects.
+- Unit test and Integration test `Redux`.
+- Maintain test coverage at 100%, skip tests where it's not necessary.
+- Only test critical flows when it comes to e2e testing, because e2e tests are often resource heavy tests.
 
-## Expanding the ESLint configuration
+## Features
+- Uses `Redux Toolkit` for state management.
+- Uses `Redux Saga` for managing effects.
+- Uses `Web Sockets` for messaging.
+- Uses `TailWindcss` for styling.
+- Uses `Vitest` for unit testing.
+- Uses `React Testing Library` with `Vitest` for Integration testing.
+- Uses `Redux Saga Test Plan` for testing Saga effects.
+- Uses `Cypress` for e2e testing.
+- Uses `MSW` for mocking Service Workers.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
+- `TypeScript`.
+- `React`.
+- `Redux Toolkit` for state management.
+- `Vite` for building the React project.
+- `clsx` for handling class names.
+- `Prettier` for sorting imports.
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Clone:
+```
+git clone https://github.com/iding-ir/react-test-strategy.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Install dependencies:
+```
+npm install
+```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Run dev environment:
+```
+npm run dev
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Run tests:
+```
+npm run tests
+```
+
+Run e2e tests:
+```
+npm run e2e
 ```
