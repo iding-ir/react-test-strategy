@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { Button } from "../Button";
 
 export const Input = ({
@@ -22,7 +23,7 @@ export const Input = ({
   return (
     <>
       <input
-        data-testId={`${testId}-input`}
+        data-testid={`${testId}-input`}
         type="text"
         value={value}
         onChange={handleChange}

@@ -1,7 +1,7 @@
 import { randomlyDelay } from "./randomly-delay";
 import { randomlyFail } from "./randomly-fail";
 
-export async function randomlyValidate({
+export async function randomlyThrowErrorAsync({
   threshold,
   random,
 }: {

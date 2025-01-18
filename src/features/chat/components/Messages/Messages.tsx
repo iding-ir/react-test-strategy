@@ -18,9 +18,9 @@ export const Messages = () => {
     <div data-testid="messages">
       <h2>Messages:</h2>
 
-      <ul data-testId="message-list">
+      <ul data-testid="message-list">
         {messages.map((message, index) => (
-          <li data-testId="message-item" key={index}>
+          <li data-testid="message-item" key={index}>
             {message}
           </li>
         ))}

@@ -12,7 +12,7 @@ export const Button = ({
   onClick: () => void;
 }) => {
   return (
-    <button data-testId={testId} disabled={disabled} onClick={onClick}>
+    <button data-testid={testId} disabled={disabled} onClick={onClick}>
       {children}
     </button>
   );

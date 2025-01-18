@@ -1,10 +1,11 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { addMessage } from "../chat-slice";
-import { randomlyValidate } from "../../../methods/randomly-validate";
-import { addNotification } from "../../monitor/monitor-slice";
-import { requestAddMessage } from "../actions";
+
 import { getErrorMessage } from "../../../methods/get-error-message";
+import { randomlyThrowErrorAsync } from "../../../methods/randomly-throw-error-async";
+import { addNotification } from "../../monitor/monitor-slice";
 import { NotificationType } from "../../monitor/type";
+import { requestAddMessage } from "../actions";
+import { addMessage } from "../chat-slice";
 
 export const getSuccessNotification = (): NotificationType => {
   return { message: "Message was added.", category: "success" };
@@ -19,10 +20,13 @@ export const getInfoNotification = (): NotificationType => {
 };
 
 export function* requestAddMessageSaga(
-  action: ReturnType<typeof requestAddMessage>
+  action: ReturnType<typeof requestAddMessage>,
 ): Generator {
+  const threshold = 0.6;
+  const random = Math.random();
+
   try {
-    yield call(randomlyValidate, { threshold: 0.6, random: Math.random() });
+    yield call(randomlyThrowErrorAsync, { threshold, random });
     yield put(addMessage(action.payload));
     yield put(addNotification(getSuccessNotification()));
   } catch (error) {

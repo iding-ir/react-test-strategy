@@ -1,18 +1,19 @@
-import { describe, it } from "vitest";
 import { expectSaga } from "redux-saga-test-plan";
-import { throwError } from "redux-saga-test-plan/providers";
 import * as matchers from "redux-saga-test-plan/matchers";
+import { throwError } from "redux-saga-test-plan/providers";
+import { describe, it } from "vitest";
+
+import { RANDOM_ERROR } from "../../../../methods/randomly-fail";
+import { randomlyThrowErrorAsync } from "../../../../methods/randomly-throw-error-async";
+import { addNotification } from "../../../monitor/monitor-slice";
+import { requestAddMessage } from "../../actions";
+import { addMessage } from "../../chat-slice";
 import {
   getErrorNotification,
   getInfoNotification,
   getSuccessNotification,
   requestAddMessageSaga,
 } from "../request-add-message";
-import { requestAddMessage } from "../../actions";
-import { addMessage } from "../../chat-slice";
-import { randomlyValidate } from "../../../../methods/randomly-validate";
-import { addNotification } from "../../../monitor/monitor-slice";
-import { RANDOM_ERROR } from "../../../../methods/randomly-fail";
 
 describe("requestAddMessageSaga", () => {
   it("should correctly add message if no error is thrown", async () => {
@@ -24,7 +25,9 @@ describe("requestAddMessageSaga", () => {
 
     // Act & Assert
     return expectSaga(requestAddMessageSaga, action)
-      .provide([[matchers.call.fn(randomlyValidate), { threshold, random }]])
+      .provide([
+        [matchers.call.fn(randomlyThrowErrorAsync), { threshold, random }],
+      ])
       .put(addMessage(message))
       .put(addNotification(getSuccessNotification()))
       .run();
@@ -38,7 +41,7 @@ describe("requestAddMessageSaga", () => {
 
     // Act & Assert
     return expectSaga(requestAddMessageSaga, action)
-      .provide([[matchers.call.fn(randomlyValidate), throwError(error)]])
+      .provide([[matchers.call.fn(randomlyThrowErrorAsync), throwError(error)]])
       .put(addNotification(getErrorNotification(RANDOM_ERROR)))
       .put(addNotification(getInfoNotification()))
       .put(requestAddMessage(message))

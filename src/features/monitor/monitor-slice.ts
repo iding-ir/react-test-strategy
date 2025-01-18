@@ -1,7 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 
 import { createAppSlice } from "../createAppSlice";
-import { NotificationsType, NotificationType } from "./type";
+import { NotificationType, NotificationsType } from "./type";
 
 export interface NotificationsState {
   notifications: NotificationsType;
@@ -18,7 +18,7 @@ export const notificationSlice = createAppSlice({
     addNotification: create.reducer(
       (state, { payload }: PayloadAction<NotificationType>) => {
         state.notifications = [...state.notifications, payload];
-      }
+      },
     ),
     clearNotification: create.reducer((state) => {
       state.notifications = [];

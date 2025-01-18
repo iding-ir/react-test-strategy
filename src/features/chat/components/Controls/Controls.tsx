@@ -1,48 +1,18 @@
-import { useState } from "react";
 import { useAppDispatch } from "../../../../app/hooks";
 import { Button } from "../../../../components/Button";
-import { NewMessage } from "../NewMessage";
-import { MessageType } from "../../types";
+import { useWebsocket } from "../../../../hooks/use-websocket";
 import { requestAddMessage } from "../../actions";
+import { MessageType } from "../../types";
+import { NewMessage } from "../NewMessage";
 
 export const Controls = () => {
   const dispatch = useAppDispatch();
-  const [socket, setSocket] = useState<WebSocket | null>(null);
-
-  const openConnection = () => {
-    const socket = new WebSocket("ws://localhost:3000");
-
-    socket.onopen = () => {
-      socket.send("Client sends its greetings!");
-    };
-
-    socket.onmessage = (event) => {
-      dispatch(requestAddMessage(event.data));
-    };
-
-    socket.onclose = () => {
-      socket.send("Client says farewell!");
-    };
-
-    setSocket(socket);
-  };
-
-  const sendMessage = (message: MessageType) => {
-    if (!socket) {
-      return;
-    }
-
-    socket.send(message);
-  };
-
-  const closeConnection = () => {
-    if (!socket) {
-      return;
-    }
-
-    socket.close();
-    setSocket(null);
-  };
+  const { isOpen, openConnection, sendMessage, closeConnection } =
+    useWebsocket<MessageType>({
+      onMessage: (message) => {
+        dispatch(requestAddMessage(message));
+      },
+    });
 
   return (
     <>
@@ -51,7 +21,7 @@ export const Controls = () => {
       <div>
         <Button
           testId="connect-button"
-          disabled={!!socket}
+          disabled={isOpen}
           onClick={openConnection}
         >
           Open connection
@@ -59,14 +29,14 @@ export const Controls = () => {
 
         <Button
           testId="disconnect-button"
-          disabled={!socket}
+          disabled={!isOpen}
           onClick={closeConnection}
         >
           Close connection
         </Button>
       </div>
 
-      {!!socket && <NewMessage onSubmit={sendMessage} />}
+      {isOpen && <NewMessage onSubmit={sendMessage} />}
     </>
   );
 };

@@ -4,9 +4,10 @@ import {
   combineSlices,
   configureStore,
 } from "@reduxjs/toolkit";
+
 import { chatSlice } from "../features/chat/chat-slice";
-import { rootSaga, sagaMiddleware } from "./sagas";
 import { notificationSlice } from "../features/monitor/monitor-slice";
+import { rootSaga, sagaMiddleware } from "./sagas";
 
 const rootReducer = combineSlices(chatSlice, notificationSlice);
 

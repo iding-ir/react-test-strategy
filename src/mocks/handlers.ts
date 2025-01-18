@@ -1,6 +1,6 @@
 import { ws } from "msw";
 
-const chat = ws.link("ws://localhost:3000");
+const chat = ws.link(import.meta.env.VITE_WS_URL);
 
 export const handlers = [
   chat.addEventListener("connection", ({ client }) => {
