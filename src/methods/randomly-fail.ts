@@ -1,9 +1,5 @@
-const THRESHOLD = 0.6;
-
-export function randomlyFail() {
-  const random = Math.random();
-
-  if (random > THRESHOLD) {
+export function randomlyFail(random: number, threshold: number) {
+  if (random >= threshold) {
     throw new Error("Randomly failed!");
   }
 }

@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { addMessage } from "../chat-slice";
-import { randomlyValidation } from "../../../methods/randomly-validate";
+import { randomlyValidate } from "../../../methods/randomly-validate";
 import { addNotification } from "../../monitor/monitor-slice";
 import { requestAddMessage } from "../actions";
 import { getErrorMessage } from "../../../methods/get-error-message";
@@ -9,7 +9,7 @@ function* requestAddMessageSaga(
   action: ReturnType<typeof requestAddMessage>
 ): Generator {
   try {
-    yield call(randomlyValidation);
+    yield call(randomlyValidate, Math.random(), 0.6);
     yield put(addMessage(action.payload));
     yield put(
       addNotification({ message: "Message was added.", category: "success" })
