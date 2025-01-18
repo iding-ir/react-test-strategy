@@ -4,7 +4,9 @@
 - [Strategy](#strategy)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Examples](#examples)
 - [Installation](#installation)
+- [Testing](#testing)
 
 ## About
 A mock project test a React Redux application using `Vitest`, `React Testing Library`, `Cypress` and `Redux Saga Test Plan`.
@@ -39,6 +41,14 @@ A mock project test a React Redux application using `Vitest`, `React Testing Lib
 - `clsx` for handling class names.
 - `Prettier` for sorting imports.
 
+## Examples
+
+- [Testing Redux](https://github.com/iding-ir/react-test-strategy/blob/master/src/features/chat/__tests__/chat-slice.test.ts)
+- [Testing Sagas](https://github.com/iding-ir/react-test-strategy/blob/master/src/features/chat/sagas/__test__/request-add-message.test.ts)
+- [Integration Testing](https://github.com/iding-ir/react-test-strategy/blob/master/src/features/chat/components/Messages/__tests__/Messages.test.tsx)
+- [e2e Testing](https://github.com/iding-ir/react-test-strategy/blob/master/cypress/e2e/2-messaging/messaging.cy.js)
+- [Unit testing](https://github.com/iding-ir/react-test-strategy/blob/master/src/methods/__tests__/randomly-delay.test.ts)
+
 ## Installation
 
 Clone:
@@ -55,6 +65,8 @@ Run dev environment:
 ```
 npm run dev
 ```
+
+## Testing
 
 Run tests:
 ```
