@@ -11,11 +11,13 @@ export const Messages = () => {
   };
 
   if (!messages.length) {
-    return <div>Nothing to show yet!</div>;
+    return null;
   }
 
   return (
     <>
+      <h2>Messages:</h2>
+
       <ul>
         {messages.map((message, index) => (
           <li key={index}>{message}</li>

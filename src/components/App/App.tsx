@@ -1,10 +1,18 @@
+import { Wrappers } from "../Wrappers";
+import { Header } from "../Header";
 import { Chat } from "../../features/chat/components/Chat";
-import { Wrappers } from "../Wrappers/Wrappers";
+import { Monitor } from "../../features/monitor/components/Monitor";
 
 export const App = () => {
   return (
     <Wrappers>
-      <Chat />
+      <main>
+        <Header />
+
+        <Chat />
+
+        <Monitor />
+      </main>
     </Wrappers>
   );
 };

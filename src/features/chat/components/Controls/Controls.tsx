@@ -46,9 +46,9 @@ export const Controls = () => {
 
   return (
     <>
-      <div>
-        <h2>Connection:</h2>
+      <h2>Connection:</h2>
 
+      <div>
         <Button disabled={!!socket} onClick={openConnection}>
           Open connection
         </Button>

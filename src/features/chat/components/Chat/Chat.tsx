@@ -4,19 +4,9 @@ import { Messages } from "../Messages";
 export const Chat = () => {
   return (
     <section>
-      <header>
-        <h1>React Redux Saga Web Socket chat</h1>
-      </header>
+      <Controls />
 
-      <aside>
-        <Controls />
-      </aside>
-
-      <main>
-        <h2>Messages:</h2>
-
-        <Messages />
-      </main>
+      <Messages />
     </section>
   );
 };

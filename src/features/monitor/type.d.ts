@@ -5,3 +5,5 @@ export type NotificationType = {
   message: NotificationMessageType;
   category: NotificationCategoryType;
 };
+
+export type NotificationsType = NotificationType[];
