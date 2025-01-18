@@ -26,7 +26,9 @@ export const Messages = () => {
         ))}
       </ul>
 
-      <Button onClick={handleClearMessages}>Clear messages</Button>
+      <Button testId="clear-messages" onClick={handleClearMessages}>
+        Clear messages
+      </Button>
     </div>
   );
 };

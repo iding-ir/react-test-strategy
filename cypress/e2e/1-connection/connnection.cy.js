@@ -25,7 +25,7 @@ describe("connect button", () => {
     cy.get("[data-testid='message-item']").should("have.length", 2);
   });
 
-  it("should make new message input field visible when connected", () => {
+  it("should enable adding new messages when connected", () => {
     cy.get("[data-testid='connect-button']").click();
     cy.get("[data-testid='new-message-input']").should("be.visible");
   });
@@ -47,9 +47,6 @@ describe("disconnect button", () => {
 
   it("should become disabled when disconnected", () => {
     cy.get("[data-testid='connect-button']").click();
-    cy.get("[data-testid='disconnect-button']")
-      .should("not.be.disabled")
-      .click()
-      .should("be.disabled");
+    cy.get("[data-testid='disconnect-button']").click().should("be.disabled");
   });
 });

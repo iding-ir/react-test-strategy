@@ -47,7 +47,7 @@ describe("chatSlice", () => {
 
   it("should select messages", () => {
     // Arrange
-    const messages = ["Hello, world!"];
+    const messages = ["Hello, world!", "Farewell, cruel world!"];
     const state = { chat: { messages } };
 
     // Act

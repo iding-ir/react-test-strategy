@@ -3,16 +3,31 @@ import { describe, expect, it } from "vitest";
 import { randomlyDelay } from "../randomly-delay";
 
 describe("randomlyDelay", () => {
-  it("should resolve after a given time", async () => {
+  it("should resolve no earlier than min fixed delay", async () => {
     // Arrange
-    const maxDelay = 1000;
-    const start = Date.now();
+    const fixedDelay = 500;
+    const variableDelay = 1000;
 
     // Act
-    await randomlyDelay({ maxDelay });
-    const end = Date.now();
+    const start = Date.now();
+    await randomlyDelay({ fixedDelay, variableDelay });
+    const delay = Date.now() - start;
 
     // Assert
-    expect(end - start).toBeLessThanOrEqual(maxDelay);
+    expect(delay).toBeGreaterThanOrEqual(fixedDelay);
+  });
+
+  it("should resolve no later than sum of fixed and variable delays", async () => {
+    // Arrange
+    const fixedDelay = 500;
+    const variableDelay = 1000;
+
+    // Act
+    const start = Date.now();
+    await randomlyDelay({ fixedDelay, variableDelay });
+    const delay = Date.now() - start;
+
+    // Assert
+    expect(delay).toBeLessThanOrEqual(fixedDelay + variableDelay);
   });
 });

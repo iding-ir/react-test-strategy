@@ -8,7 +8,7 @@ export async function randomlyThrowErrorAsync({
   threshold: number;
   random: number;
 }) {
-  await randomlyDelay({ maxDelay: 1000 });
+  await randomlyDelay({ fixedDelay: 1000, variableDelay: 1000 });
 
   randomlyFail({ threshold, random });
 }

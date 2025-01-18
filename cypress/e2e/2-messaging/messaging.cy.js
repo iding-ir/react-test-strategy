@@ -26,7 +26,7 @@ describe("messaging", () => {
       .should("be.disabled");
   });
 
-  it("should add new message to the list when created", () => {
+  it("should add new message to the list when new message is created", () => {
     cy.get("[data-testid='connect-button']").click();
     cy.get("[data-testid='new-message-input']").type("Hello, World!");
     cy.get("[data-testid='new-message-button']").click();

@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { randomlyFail } from "../randomly-fail";
 
 describe("randomlyFail", () => {
-  it("should not throw an error when random is less than threshold", () => {
+  it("should not throw an error when random number is less than the threshold", () => {
     // Arrange
     const random = 0.5;
     const threshold = 0.6;
@@ -15,7 +15,7 @@ describe("randomlyFail", () => {
     expect(action).not.toThrow();
   });
 
-  it("should throw an error when random is greater than threshold", () => {
+  it("should throw an error when random number is greater than the threshold", () => {
     // Arrange
     const random = 0.7;
     const threshold = 0.6;
@@ -27,7 +27,7 @@ describe("randomlyFail", () => {
     expect(action).toThrow("Randomly failed!");
   });
 
-  it("should throw an error when random is equal to threshold", () => {
+  it("should throw an error when random number is equal to the threshold", () => {
     // Arrange
     const random = 0.6;
     const threshold = 0.6;
