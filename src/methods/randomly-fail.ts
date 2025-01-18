@@ -1,5 +1,13 @@
-export function randomlyFail(random: number, threshold: number) {
+export const RANDOM_ERROR = "Randomly failed!";
+
+export function randomlyFail({
+  threshold,
+  random,
+}: {
+  threshold: number;
+  random: number;
+}) {
   if (random >= threshold) {
-    throw new Error("Randomly failed!");
+    throw new Error(RANDOM_ERROR);
   }
 }

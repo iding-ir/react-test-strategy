@@ -8,7 +8,7 @@ describe("randomlyFail", () => {
     const threshold = 0.6;
 
     // Act
-    const action = () => randomlyFail(random, threshold);
+    const action = () => randomlyFail({ threshold, random });
 
     // Assert
     expect(action).not.toThrow();
@@ -20,7 +20,7 @@ describe("randomlyFail", () => {
     const threshold = 0.6;
 
     // Act
-    const action = () => randomlyFail(random, threshold);
+    const action = () => randomlyFail({ threshold, random });
 
     // Assert
     expect(action).toThrow("Randomly failed!");
@@ -32,7 +32,7 @@ describe("randomlyFail", () => {
     const threshold = 0.6;
 
     // Act
-    const action = () => randomlyFail(random, threshold);
+    const action = () => randomlyFail({ threshold, random });
 
     // Assert
     expect(action).toThrow();
