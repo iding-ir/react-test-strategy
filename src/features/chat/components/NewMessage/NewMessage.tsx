@@ -1,4 +1,5 @@
 import { Input } from "../../../../components/Input";
+import { Title } from "../../../../components/Title";
 import { MessageType } from "../../types";
 
 export const NewMessage = ({
@@ -8,7 +9,7 @@ export const NewMessage = ({
 }) => {
   return (
     <div>
-      <h2>New message:</h2>
+      <Title>New message:</Title>
 
       <Input testId="new-message" onSubmit={onSubmit} />
     </div>

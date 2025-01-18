@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 
 import { App } from "./components/App";
 import { worker } from "./mocks/browser";
+import "./styles/main.scss";
 
 await worker.start({
   serviceWorker: {

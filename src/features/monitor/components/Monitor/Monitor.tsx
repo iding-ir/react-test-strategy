@@ -1,16 +1,8 @@
-import { useAppSelector } from "../../../../app/hooks";
-import { selectNotifications } from "../../monitor-slice";
 import { Notifications } from "../Notifications";
 
 export const Monitor = () => {
-  const notifications = useAppSelector(selectNotifications);
-
-  if (!notifications.length) {
-    return null;
-  }
-
   return (
-    <section>
+    <section className="border border-gray-300 bg-gray-100 p-4 rounded-md">
       <Notifications />
     </section>
   );

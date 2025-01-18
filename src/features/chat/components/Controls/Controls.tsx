@@ -1,5 +1,6 @@
 import { useAppDispatch } from "../../../../app/hooks";
 import { Button } from "../../../../components/Button";
+import { Title } from "../../../../components/Title";
 import { useWebsocket } from "../../../../hooks/use-websocket";
 import { requestAddMessage } from "../../actions";
 import { MessageType } from "../../types";
@@ -16,9 +17,9 @@ export const Controls = () => {
 
   return (
     <>
-      <h2>Connection:</h2>
+      <Title>Controls:</Title>
 
-      <div>
+      <div className="grid grid-cols-2 gap-2">
         <Button
           testId="connect-button"
           disabled={isOpen}

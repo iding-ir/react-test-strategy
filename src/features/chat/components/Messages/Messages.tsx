@@ -1,6 +1,8 @@
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { Button } from "../../../../components/Button";
+import { Title } from "../../../../components/Title";
 import { clearMessages, selectMessages } from "../../chat-slice";
+import { Message } from "../Message/Message";
 
 export const Messages = () => {
   const dispatch = useAppDispatch();
@@ -16,13 +18,11 @@ export const Messages = () => {
 
   return (
     <div data-testid="messages">
-      <h2>Messages:</h2>
+      <Title>Messages:</Title>
 
-      <ul data-testid="message-list">
+      <ul data-testid="message-list" className="grid gap-y-2 mb-4">
         {messages.map((message, index) => (
-          <li data-testid="message-item" key={index}>
-            {message}
-          </li>
+          <Message key={index} message={message} />
         ))}
       </ul>
 

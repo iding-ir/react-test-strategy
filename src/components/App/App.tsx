@@ -6,9 +6,12 @@ import { Wrappers } from "../Wrappers";
 export const App = () => {
   return (
     <Wrappers>
-      <main data-testid="app">
-        <Header />
+      <Header />
 
+      <main
+        data-testid="app"
+        className="p-4 grid grid-cols-1 gap-y-4 md:grid-cols-2 md:gap-x-4"
+      >
         <Chat />
 
         <Monitor />

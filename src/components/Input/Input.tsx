@@ -21,8 +21,9 @@ export const Input = ({
   };
 
   return (
-    <>
+    <div className="grid grid-cols-4 gap-2">
       <input
+        className="col-span-3 p-2 border border-gray-300 rounded-md"
         data-testid={`${testId}-input`}
         type="text"
         value={value}
@@ -36,6 +37,6 @@ export const Input = ({
       >
         Send message
       </Button>
-    </>
+    </div>
   );
 };
