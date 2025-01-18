@@ -6,7 +6,7 @@ import {
 } from "@reduxjs/toolkit";
 import { chatSlice } from "../features/chat/chat-slice";
 import { rootSaga, sagaMiddleware } from "./sagas";
-import { notificationSlice } from "../features/monitor/notification-slice";
+import { notificationSlice } from "../features/monitor/monitor-slice";
 
 const rootReducer = combineSlices(chatSlice, notificationSlice);
 

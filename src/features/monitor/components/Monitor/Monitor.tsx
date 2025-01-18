@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../../app/hooks";
-import { selectNotifications } from "../../notification-slice";
+import { selectNotifications } from "../../monitor-slice";
 import { Notifications } from "../Notifications";
 
 export const Monitor = () => {

@@ -4,28 +4,28 @@ import { createAppSlice } from "../createAppSlice";
 import { NotificationsType, NotificationType } from "./type";
 
 export interface NotificationsState {
-  all: NotificationsType;
+  notifications: NotificationsType;
 }
 
 const initialState: NotificationsState = {
-  all: [],
+  notifications: [],
 };
 
 export const notificationSlice = createAppSlice({
-  name: "notifications",
+  name: "monitor",
   initialState,
   reducers: (create) => ({
     addNotification: create.reducer(
       (state, { payload }: PayloadAction<NotificationType>) => {
-        state.all = [...state.all, payload];
+        state.notifications = [...state.notifications, payload];
       }
     ),
     clearNotification: create.reducer((state) => {
-      state.all = [];
+      state.notifications = [];
     }),
   }),
   selectors: {
-    selectNotifications: ({ all }) => all,
+    selectNotifications: ({ notifications }) => notifications,
   },
 });
 
