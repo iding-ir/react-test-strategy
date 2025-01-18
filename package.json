@@ -1,8 +1,35 @@
 {
-  "name": "react-redux-saga-ws",
+  "name": "react-test-strategy",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "description": "A mock project test a React Redux application using Jest, React Testing Library, Cypress and Redux Saga Test Plan.",
+  "keywords": [
+    "TypeScript",
+    "React",
+    "Redux",
+    "Redux Toolkit",
+    "Redux Saga",
+    "Jest",
+    "React Testing Library",
+    "Cypress",
+    "Redux Saga Test Plan",
+    "Tailwindcss",
+    "Web Sockets",
+    "MSW",
+    "Vite"
+  ],
+  "author": {
+    "name": "Aydin Ghane Kh.",
+    "email": "aydin.ghane.kh@gmail.com",
+    "url": "https://iding.ir"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iding-ir/react-test-strategy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iding-ir/react-test-strategy/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
