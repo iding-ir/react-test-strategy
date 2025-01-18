@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { randomlyDelay } from "../randomly-delay";
 
 describe("randomlyDelay", () => {

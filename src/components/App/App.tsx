@@ -6,7 +6,7 @@ import { Monitor } from "../../features/monitor/components/Monitor";
 export const App = () => {
   return (
     <Wrappers>
-      <main>
+      <main data-testid="app">
         <Header />
 
         <Chat />
