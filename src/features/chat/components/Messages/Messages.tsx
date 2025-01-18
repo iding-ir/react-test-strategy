@@ -15,7 +15,7 @@ export const Messages = () => {
   }
 
   return (
-    <>
+    <div data-testid="messages">
       <h2>Messages:</h2>
 
       <ul>
@@ -25,6 +25,6 @@ export const Messages = () => {
       </ul>
 
       <Button onClick={handleClearMessages}>Clear messages</Button>
-    </>
+    </div>
   );
 };
