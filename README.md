@@ -32,6 +32,7 @@ A mock project test a React Redux application using `Vitest`, `React Testing Lib
 - Uses `Redux Saga Test Plan` for testing Saga effects.
 - Uses `Cypress` for e2e testing.
 - Uses `MSW` for mocking Service Workers.
+- Uses `GitHub Actions` for CI/CD.
 
 ## Tech Stack
 - `TypeScript`.
@@ -70,7 +71,7 @@ npm run dev
 
 Run tests:
 ```
-npm run tests
+npm run test
 ```
 
 Run e2e tests:
