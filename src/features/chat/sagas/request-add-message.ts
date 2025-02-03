@@ -3,22 +3,13 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { getErrorMessage } from "../../../methods/get-error-message";
 import { randomlyThrowErrorAsync } from "../../../methods/randomly-throw-error-async";
 import { addNotification } from "../../monitor/monitor-slice";
-import { NotificationType } from "../../monitor/type";
 import { requestAddMessage } from "../actions";
 import { addMessage } from "../chat-slice";
 
-export const getSuccessNotification = (): NotificationType => {
-  return { message: "Message was added.", category: "success" };
-};
+export const SUCCESS_MESSAGE = "Message added successfully!";
+export const INFO_MESSAGE = "Retrying to send message...";
 
-export const getErrorNotification = (error: unknown): NotificationType => {
-  return { message: getErrorMessage(error), category: "error" };
-};
-
-export const getInfoNotification = (): NotificationType => {
-  return { message: "Retrying to send message...", category: "info" };
-};
-
+// Worker saga
 export function* requestAddMessageSaga(
   action: ReturnType<typeof requestAddMessage>,
 ): Generator {
@@ -28,14 +19,19 @@ export function* requestAddMessageSaga(
   try {
     yield call(randomlyThrowErrorAsync, { threshold, random });
     yield put(addMessage(action.payload));
-    yield put(addNotification(getSuccessNotification()));
+    yield put(
+      addNotification({ message: SUCCESS_MESSAGE, category: "success" }),
+    );
   } catch (error) {
-    yield put(addNotification(getErrorNotification(error)));
-    yield put(addNotification(getInfoNotification()));
+    yield put(
+      addNotification({ message: getErrorMessage(error), category: "error" }),
+    );
+    yield put(addNotification({ message: INFO_MESSAGE, category: "info" }));
     yield put(requestAddMessage(action.payload));
   }
 }
 
+// Watcher saga
 export function* watchRequestAddMessage() {
   yield takeEvery(requestAddMessage, requestAddMessageSaga);
 }

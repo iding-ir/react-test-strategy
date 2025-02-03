@@ -1,15 +1,7 @@
-import {
-  Action,
-  ThunkAction,
-  combineSlices,
-  configureStore,
-} from "@reduxjs/toolkit";
+import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 
-import { chatSlice } from "../features/chat/chat-slice";
-import { notificationSlice } from "../features/monitor/monitor-slice";
+import { rootReducer } from "./reducers";
 import { rootSaga, sagaMiddleware } from "./sagas";
-
-const rootReducer = combineSlices(chatSlice, notificationSlice);
 
 export const store = configureStore({
   reducer: rootReducer,

@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 
-import { createAppSlice } from "../createAppSlice";
+import { createAppSlice } from "../../app/createAppSlice";
 import { DEFAULT_MESSAGES } from "./chat";
 import { MessageType, MessagesType } from "./types";
 
@@ -18,7 +18,7 @@ export const chatSlice = createAppSlice({
   reducers: (create) => ({
     addMessage: create.reducer(
       (state, { payload }: PayloadAction<MessageType>) => {
-        state.messages = [...state.messages, payload];
+        state.messages.push(payload);
       },
     ),
     clearMessages: create.reducer((state) => {

@@ -1,6 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 
-import { createAppSlice } from "../createAppSlice";
+import { createAppSlice } from "../../app/createAppSlice";
+import { DEFAULT_NOTIFICATIONS } from "./monitor";
 import { NotificationType, NotificationsType } from "./type";
 
 export interface NotificationsState {
@@ -8,7 +9,7 @@ export interface NotificationsState {
 }
 
 const initialState: NotificationsState = {
-  notifications: [],
+  notifications: DEFAULT_NOTIFICATIONS,
 };
 
 export const notificationSlice = createAppSlice({
@@ -17,11 +18,11 @@ export const notificationSlice = createAppSlice({
   reducers: (create) => ({
     addNotification: create.reducer(
       (state, { payload }: PayloadAction<NotificationType>) => {
-        state.notifications = [...state.notifications, payload];
+        state.notifications.push(payload);
       },
     ),
     clearNotification: create.reducer((state) => {
-      state.notifications = [];
+      state.notifications = DEFAULT_NOTIFICATIONS;
     }),
   }),
   selectors: {

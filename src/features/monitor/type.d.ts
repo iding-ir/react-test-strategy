@@ -1,9 +1,6 @@
-export type NotificationMessageType = string;
-export type NotificationCategoryType = "error" | "warning" | "info" | "success";
-
 export type NotificationType = {
-  message: NotificationMessageType;
-  category: NotificationCategoryType;
+  message: string;
+  category: "error" | "warning" | "info" | "success";
 };
 
 export type NotificationsType = NotificationType[];

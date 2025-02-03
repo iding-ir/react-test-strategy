@@ -9,9 +9,8 @@ import { addNotification } from "../../../monitor/monitor-slice";
 import { requestAddMessage } from "../../actions";
 import { addMessage } from "../../chat-slice";
 import {
-  getErrorNotification,
-  getInfoNotification,
-  getSuccessNotification,
+  INFO_MESSAGE,
+  SUCCESS_MESSAGE,
   requestAddMessageSaga,
 } from "../request-add-message";
 
@@ -29,7 +28,7 @@ describe("requestAddMessageSaga", () => {
         [matchers.call.fn(randomlyThrowErrorAsync), { threshold, random }],
       ])
       .put(addMessage(message))
-      .put(addNotification(getSuccessNotification()))
+      .put(addNotification({ message: SUCCESS_MESSAGE, category: "success" }))
       .run();
   });
 
@@ -42,8 +41,8 @@ describe("requestAddMessageSaga", () => {
     // Act & Assert
     return expectSaga(requestAddMessageSaga, action)
       .provide([[matchers.call.fn(randomlyThrowErrorAsync), throwError(error)]])
-      .put(addNotification(getErrorNotification(RANDOM_ERROR)))
-      .put(addNotification(getInfoNotification()))
+      .put(addNotification({ message: RANDOM_ERROR, category: "error" }))
+      .put(addNotification({ message: INFO_MESSAGE, category: "info" }))
       .put(requestAddMessage(message))
       .run();
   });

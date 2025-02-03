@@ -3,17 +3,24 @@ import { Button } from "../../../../components/Button";
 import { Title } from "../../../../components/Title";
 import { useWebsocket } from "../../../../hooks/use-websocket";
 import { requestAddMessage } from "../../actions";
-import { MessageType } from "../../types";
 import { NewMessage } from "../NewMessage";
 
 export const Controls = () => {
   const dispatch = useAppDispatch();
-  const { isOpen, openConnection, sendMessage, closeConnection } =
-    useWebsocket<MessageType>({
-      onMessage: (message) => {
+  const { isOpen, openConnection, sendMessage, closeConnection } = useWebsocket(
+    {
+      url: import.meta.env.VITE_WS_URL,
+      onOpened: () => {
+        dispatch(requestAddMessage("Client sends its greetings"));
+      },
+      onReceive: (message) => {
         dispatch(requestAddMessage(message));
       },
-    });
+      onClosed: () => {
+        dispatch(requestAddMessage("Client says goodbye"));
+      },
+    },
+  );
 
   return (
     <>

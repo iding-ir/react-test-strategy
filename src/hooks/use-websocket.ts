@@ -1,48 +1,56 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-import { MessageType } from "../features/chat/types";
-
-export const useWebsocket = <T>({
-  onMessage,
+export const useWebsocket = ({
+  url,
+  onOpened,
+  onClosed,
+  onReceive,
 }: {
-  onMessage: (message: T) => void;
+  url: string;
+  onOpened?: () => void;
+  onClosed?: () => void;
+  onReceive: (message: string) => void;
 }) => {
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
-  const openConnection = () => {
-    const socket = new WebSocket(import.meta.env.VITE_WS_URL);
-
-    socket.onopen = () => {
-      socket.send("Client sends its greetings!");
+  useEffect(() => {
+    return () => {
+      socket?.close();
     };
+  }, [onClosed, onOpened, onReceive, url, socket]);
 
-    socket.onmessage = (event) => {
-      onMessage(event.data);
-    };
+  const openConnection = useCallback(() => {
+    const socket = new WebSocket(url);
 
-    socket.onclose = () => {
-      socket.send("Client says farewell!");
-    };
+    socket.addEventListener("open", () => {
+      setSocket(socket);
+      onOpened?.();
+    });
 
-    setSocket(socket);
-  };
+    socket.addEventListener("close", () => {
+      setSocket(null);
+      onClosed?.();
+    });
 
-  const sendMessage = (message: MessageType) => {
-    if (!socket) {
-      return;
-    }
+    socket.addEventListener("message", (event) => {
+      onReceive(event.data);
+    });
 
-    socket.send(message);
-  };
+    socket.addEventListener("error", (event) => {
+      throw new Error(`WebSocket error: ${event}`);
+    });
+  }, [onClosed, onOpened, onReceive, url]);
 
-  const closeConnection = () => {
-    if (!socket) {
-      return;
-    }
+  const closeConnection = useCallback(() => {
+    socket?.close();
+  }, [socket]);
 
-    socket.close();
-    setSocket(null);
-  };
+  const sendMessage = useCallback(
+    (message: string) => {
+      socket?.send(message);
+    },
+    [socket],
+  );
 
   return {
     socket,
