@@ -2,19 +2,17 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import { App } from "./components/App";
-import { worker } from "./mocks/browser";
+import { initMSW } from "./mocks/browser";
 import "./styles/main.scss";
 
-await worker.start({
-  serviceWorker: {
-    url: "/mockServiceWorker.js",
-  },
-  // onUnhandledRequest: "warn",
-  quiet: true,
-});
+async function main() {
+  await initMSW();
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+  createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+}
+
+main();
