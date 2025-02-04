@@ -44,11 +44,11 @@ A mock project test a React Redux application using `Vitest`, `React Testing Lib
 
 ## Examples
 
-- [Testing Redux](https://github.com/iding-ir/react-test-strategy/blob/master/src/features/chat/__tests__/chat-slice.test.ts)
-- [Testing Sagas](https://github.com/iding-ir/react-test-strategy/blob/master/src/features/chat/sagas/__test__/request-add-message.test.ts)
-- [Integration Testing](https://github.com/iding-ir/react-test-strategy/blob/master/src/features/chat/components/Messages/__tests__/Messages.test.tsx)
-- [e2e Testing](https://github.com/iding-ir/react-test-strategy/blob/master/cypress/e2e/2-messaging/messaging.cy.js)
-- [Unit testing](https://github.com/iding-ir/react-test-strategy/blob/master/src/methods/__tests__/randomly-delay.test.ts)
+- [Unit testing Redux using Vite](https://github.com/iding-ir/react-test-strategy/blob/master/src/features/chat/__tests__/chat-slice.test.ts)
+- [Integration testing Sagas using Redux Saga Test Plan](https://github.com/iding-ir/react-test-strategy/blob/master/src/features/chat/sagas/__test__/request-add-message.test.ts)
+- [Integration testing React components using React Testing Library](https://github.com/iding-ir/react-test-strategy/blob/master/src/features/chat/components/Messages/__tests__/Messages.test.tsx)
+- [E2E testing using Cypress](https://github.com/iding-ir/react-test-strategy/blob/master/cypress/e2e/2-messaging/messaging.cy.js)
+- [Unit testing methods using Vite](https://github.com/iding-ir/react-test-strategy/blob/master/src/methods/__tests__/randomly-delay.test.ts)
 
 ## Installation
 
